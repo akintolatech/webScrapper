@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="logs-container">
-                    <h3>Data Logs (23 entries)</h3>
+                    <h3>Data Logs ({{ log_count }} entries)</h3>
                     {% for log in logs %}
                         <p>
                             <strong>{{ forloop.counter }}.</strong> {{ log.log_details }} on {{ log.created }}

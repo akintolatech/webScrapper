@@ -34,7 +34,8 @@ def dashboard(request):
 
         context = {
             "bot": bot,
-            "logs" : logs
+            "logs": logs,
+            "log_count": logs.count()
         }
 
         return render(request, 'authenticator/pages/dashboard.html', context)
