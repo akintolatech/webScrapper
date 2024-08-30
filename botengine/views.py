@@ -16,7 +16,7 @@ def change_status(request, bot_id):
 
         if new_status in dict(Bot.Status.choices):
             bot.status = new_status
-            new_log = Log(log_details=f"Bot was turned {bot.status}")
+            new_log = Log(log_details=f"Bot was turned {new_status}")
             new_log.save()
             bot.save()
             return JsonResponse({"message": "Status updated successfully."}, status=200)
