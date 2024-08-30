@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45" height="26" viewBox="0 0 45 26">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #2f0;
+      }
+    </style>
+  </defs>
+  <g id="switch" transform="translate(-140 -103)">
+    <rect id="body" class="cls-1" width="45" height="26" rx="13" transform="translate(140 103)"/>
+    <rect id="toggle" class="cls-2" width="20" height="20" rx="10" transform="translate(162 106)"/>
+  </g>
+</svg>

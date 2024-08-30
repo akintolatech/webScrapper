@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication </title>
+    <link type="text/css" href="{% static 'styles/auth.css' %}" rel="stylesheet" />
+    <link type="x-icon" href="{% static 'img/bot.ico' %}" rel="icon" />
+</head>
+<body>
+
+    <div class="auth-container">
+
+        <form method="post">
+
+            {% csrf_token %}
+            <center>
+                <div class="image-box">
+                    <img src="{% static 'img/bot.png' %}" />
+                </div>
+                <p>Welcome enter your Trust below</p>
+                {% if error %}
+                    <p style="color:red;">{{ error }}</p>
+                {% endif %}
+            </center>
+            
+            <input name="username" type="text" placeholder="username" required />
+            <input name="password" type="password" placeholder="passkey" required />
+            <button>Submit</button>
+
+        </form>
+
+    </div>
+</body>
+</html>
