@@ -3,7 +3,6 @@ from django.db import models
 
 # Create your models here.
 class Bot(models.Model):
-
     bot_name = models.CharField(max_length=255, unique=True)
 
     class Status(models.TextChoices):
@@ -19,3 +18,11 @@ class Bot(models.Model):
     def __str__(self):
         return self.bot_name
 
+
+class Log(models.Model):
+
+    log_details = models.CharField(max_length=1000)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.log_details
