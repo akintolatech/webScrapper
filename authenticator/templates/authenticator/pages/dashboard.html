@@ -99,28 +99,11 @@
 
                 <div class="logs-container">
                     <h3>Data Logs (23 entries)</h3>
-                    <p>
-                        1. Bookings Appointment was successfully made for study in Karachi on August 29, 2024 at 02:41PM. 
-                    </p>
-                    <p>
-                        2. Bookings Appointment was successfully made for study in Karachi on August 29, 2024 at 02:41PM. 
-                    </p>
-                    <p>
-                        3. Bookings Appointment was successfully made for study in Karachi on August 29, 2024 at 02:41PM. 
-                    </p>
-                </div>
-
-                <div class="logs-container">
-                    <h3>Data Logs (23 entries)</h3>
-                    <p>
-                        1. Bookings Appointment was successfully made for study in Karachi on August 29, 2024 at 02:41PM. 
-                    </p>
-                    <p>
-                        2. Bookings Appointment was successfully made for study in Karachi on August 29, 2024 at 02:41PM. 
-                    </p>
-                    <p>
-                        3. Bookings Appointment was successfully made for study in Karachi on August 29, 2024 at 02:41PM. 
-                    </p>
+                    {% for log in logs %}
+                        <p>
+                            <strong>{{ forloop.counter }}.</strong> {{ log.log_details }} on {{ log.created }}
+                        </p>
+                    {% endfor %}
                 </div>
 
             </div>

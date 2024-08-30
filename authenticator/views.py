@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from botengine.models import Bot
+from botengine.models import Log
 
 
 # Create your views here.
@@ -29,9 +30,11 @@ def dashboard(request):
     if request.user.is_authenticated:
 
         bot = Bot.objects.get(id=1)
+        logs = Log.objects.all()
 
         context = {
-            "bot": bot
+            "bot": bot,
+            "logs" : logs
         }
 
         return render(request, 'authenticator/pages/dashboard.html', context)
