@@ -7,6 +7,7 @@
     <title>WebScrape v0.5</title>
     <link type="text/css" href="{% static 'styles/style.css' %}" rel="stylesheet" />
     <link type="text/css" href="{% static 'styles/switch.css' %}" rel="stylesheet" />
+    <link type="text/css" href="{% static 'styles/auth.css' %}" rel="stylesheet" />
     <link type="x-icon" href="{% static 'img/bot.ico' %}" rel="icon" />
   
 </head>
@@ -45,21 +46,29 @@
             </div>
 
             <div class="dashboard-tab-container">
-                <div class="dashboard-tab">
+
+                <div class="dashboard-tab" onclick="tabToggle('home', this)" id="defaultOpen">
+                    <div class="icn-box">
+                        <img src="{% static 'img/account.svg' %}"  />
+                    </div>
+                    <h3>Dashboard</h3>
+                </div>
+
+                <div class="dashboard-tab" onclick="tabToggle('accounts', this)" id="defaultOpen">
                     <div class="icn-box">
                         <img src="{% static 'img/account.svg' %}"  />
                     </div>
                     <h3>Accounts</h3>
                 </div>
 
-                <div class="dashboard-tab">
+                <div class="dashboard-tab" onclick="tabToggle('about', this)">
                     <div class="icn-box">
                         <img src="{% static 'img/result.svg' %}" />
                     </div>
                     <h3>Data Logs</h3>
                 </div>
 
-                <div class="dashboard-tab">
+                <div class="dashboard-tab" onclick="tabToggle('projects', this)">
                     <div class="icn-box">
                         <img src="{% static 'img/error.svg' %}" />
                     </div>
@@ -81,38 +90,161 @@
         </div>
 
         <div class="main-item">
+
             <div class="main-item-wrap">
-                <div class="status-container">
-                    <div class="status-tab">
-                        <h3>Bot Status</h3>
-                        <h2 class="status-text">{{ bot.get_status_display }}</h2>
 
+                <!-- Main dashboard section-->
+                <div id="home" class="tabcontent">
+
+                    <div class="status-container">
+
+                        <div class="status-tab">
+                            <h3>Bot Status</h3>
+                            <h2 class="status-text">{{ bot.get_status_display }}</h2>
+
+                        </div>
+                        <div class="status-tab">
+                            <h3>Successful Logins</h3>
+                            <h2>{{ bot.successful_logins }} times</h2>
+                        </div>
+                        <div class="status-tab">
+                            <h3>Successful Bookings</h3>
+                            <h2>{{ bot.successful_bookings }}</h2>
+                        </div>
                     </div>
-                    <div class="status-tab">
-                        <h3>Successful Logins</h3>
-                        <h2>{{ bot.successful_logins }} times</h2>
-                    </div>
-                    <div class="status-tab">
-                        <h3>Successful Bookings</h3>
-                        <h2>{{ bot.successful_bookings }}</h2>
+                    <div class="logs-container">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3>Recent Logs ({{ log_count }} entries)</h3>
+
+                            <a href="{% url 'authenticator:clear_logs' %}">
+                                <div class="icn-box small">
+                                    <img src="{% static 'img/x.svg' %}" />
+                                </div>
+                            </a>
+                        </div>
+                        
+                        {% for log in logs %}
+                            <p>
+                                <strong>{{ forloop.counter }}.</strong> {{ log.log_details }} on {{ log.created }}
+                            </p>
+                        {% endfor %}
                     </div>
                 </div>
 
-                <div class="logs-container">
-                    <h3>Data Logs ({{ log_count }} entries)</h3>
-                    {% for log in logs %}
-                        <p>
-                            <strong>{{ forloop.counter }}.</strong> {{ log.log_details }} on {{ log.created }}
-                        </p>
-                    {% endfor %}
+                <!-- Accounts section -->
+                <div id="accounts" class="tabcontent">
+                    <!-- Comprehensive logs -->
+                    <div class="logs-container">
+
+                        <div>
+                            <h3>Accounts</h3>
+                        </div>
+
+                        <form method="post">
+
+                            {% csrf_token %}
+                            <!-- <center>
+                                <div class="image-box">
+                                    <img src="{% static 'img/bot.png' %}" />
+                                </div>
+                                <p>Welcome enter your Trust below</p>
+                                {% if error %}
+                                    <p style="color:red;">{{ error }}</p>
+                                {% endif %}
+                            </center> -->
+                            
+                            <input name="username" type="text" placeholder="username" required />
+                            <input name="password" type="password" placeholder="passkey" required />
+                            <button style="width: 120px;">Update</button>
+
+                        </form>
+
+                    </div>
                 </div>
+
+                <!-- Comprehensive logs section -->
+                <div id="about" class="tabcontent">
+                    <div class="logs-container">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h3>Data Logs ({{ log_count }} entries)</h3>
+
+                            <a href="{% url 'authenticator:clear_logs' %}">
+                                <div class="icn-box small">
+                                    <img src="{% static 'img/x.svg' %}" />
+                                </div>
+                            </a>
+                        </div>
+                        
+                        {% for log in logs %}
+                            <p>
+                                <strong>{{ forloop.counter }}.</strong> {{ log.log_details }} on {{ log.created }}
+                            </p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Errata section -->
+                <div id="projects" class="tabcontent">
+                    <!-- Comprehensive logs -->
+                    <div class="logs-container">
+                        <div>
+                            <h3>Errata</h3>
+                        </div>
+                        <p>Errata</p>
+                    </div>
+                </div>
+                
+
 
             </div>
             
         </div>
+
     </div>
     
 </body>
+
+    <script>
+
+
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click(); 
+
+        function tabToggle ( section, element) {
+
+            
+            var tabcontent;
+            var iconBox;
+
+
+            // remove sections except default
+            tabcontent = document.querySelectorAll(".tabcontent");
+
+            for (var i=0; i < tabcontent.length; i++){
+                tabcontent[i].style.display = "none";
+                // element.style.backgroundColor= "";
+            }
+
+
+            dashboardTab = document.querySelectorAll(".dashboard-tab");
+            for ( var i = 0; i < dashboardTab.length; i++) {
+                dashboardTab[i].style.backgroundColor = "";
+            }
+
+            // show specific content
+            document.getElementById(section).style.display = "block";
+            element.style.backgroundColor="#fff7ff1f"
+
+        };
+
+        
+        
+
+    </script>
+
+
+
     <script language="javascript" src="{% static 'js/toggle.js' %}"></script>
     <script>
         document.getElementById('status-switch').addEventListener('change', function() {

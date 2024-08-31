@@ -22,7 +22,7 @@ bot = Bot.objects.get(id=1)
 def run_bot_automation():
     captcha_dir = os.path.join(os.getcwd(), "res")
     captcha_image_path = os.path.join(captcha_dir, "captcha_image.jpg")
-    max_retries = 3  # Number of retries if login fails
+    max_retries = 10  # Number of retries if login fails
 
     # Ensure the directory exists
     os.makedirs(captcha_dir, exist_ok=True)
@@ -31,7 +31,9 @@ def run_bot_automation():
     chrome_options.add_argument("--start-maximized")
 
     def basic_captcha_solver(img_path):
+        # Read Image from supplied path
         img = cv2.imread(img_path)
+        # Covert image to grayscale for Open cv processing
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         _, thresh = cv2.threshold(gray, 50, 255, cv2.THRESH_BINARY_INV)
         white_img = cv2.merge([255 - thresh, 255 - thresh, 255 - thresh])
@@ -110,12 +112,13 @@ def run_bot_automation():
 
             except TimeoutException:
                 print("Timeout while trying to login")
-                log_entry = Log(log_details="Timeout while trying to login")
+                log_entry = Log(log_details="Timeout while trying to login ... Retrying Log in")
                 log_entry.save()
-            except (FileNotFoundError, ValueError) as e:
-                print(e)
-                log_entry = Log(log_details=str(e))
-                log_entry.save()
+
+            # except (FileNotFoundError, ValueError) as e:
+            #     print(e)
+            #     log_entry = Log(log_details=str(e))
+            #     log_entry.save()
 
     # Initialize the WebDriver
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)

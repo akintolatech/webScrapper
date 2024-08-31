@@ -43,6 +43,15 @@ def dashboard(request):
         return redirect('login')
 
 
+@login_required(login_url='/authenticate/')
+def clear_logs(request):
+
+    logs = Log.objects.all()
+    logs.delete()
+
+    return redirect('authenticator:dashboard')
+
+
 def logout_view(request):
     logout(request)
     return redirect('authenticator:authenticator')

@@ -15,20 +15,32 @@ def change_status(request, bot_id):
     try:
         bot = Bot.objects.get(id=bot_id)
         data = json.loads(request.body)
+
+        # Extract Status ad save to database
         new_status = data.get('status')
+        bot.status = new_status
+        bot.save()
 
         if new_status in dict(Bot.Status.choices):
-            bot.status = new_status
-            run_bot_automation(repeat=5 * 60)
-            new_log = Log(log_details=f"Bot was turned ")
-            new_log.save()
-            bot.save()
+
+            print(new_status)
+            if new_status == "AE":
+                active_log = Log(log_details=f"The Bot is now active ")
+                active_log.save()
+                run_bot_automation(repeat=5 * 60)
+            else:
+                idle_log = Log(log_details=f"The Bot is now Idle ")
+                idle_log.save()
+
             return JsonResponse({"message": "Status updated successfully."}, status=200)
         else:
             return JsonResponse({"message": "Invalid status value."}, status=400)
 
+        # return redirect("authenticator:dashboard")
+
     except Bot.DoesNotExist:
         return JsonResponse({"message": "Bot not found."}, status=404)
+
 
 # def bot_cycle(request):
 #

@@ -41,6 +41,7 @@ input{
     box-sizing: border-box;
     border-radius: var(--rad);
     border: none;
+    background-color: var(--bgcolor);
 }
 
 button {
