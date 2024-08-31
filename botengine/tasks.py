@@ -13,7 +13,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import time
-from .models import Log
+from .models import Log, Bot
+
+bot = Bot.objects.get(id=1)
 
 
 @background(schedule=30)  # Run every 30 seconds
@@ -98,6 +100,7 @@ def run_bot_automation():
                 # Check for profile-specific elements to confirm successful login
                 profile_view_element = driver.find_element(By.XPATH, "//h3[contains(text(), 'Profile View')]")
                 if profile_view_element:
+                    bot.successful_logins += 1
                     log_entry = Log(log_details="Login Successful")
                     log_entry.save()
                     print("Login successful")

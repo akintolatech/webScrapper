@@ -4,6 +4,8 @@ from django.db import models
 # Create your models here.
 class Bot(models.Model):
     bot_name = models.CharField(max_length=255, unique=True)
+    successful_logins = models.IntegerField(default=0)
+    successful_bookings = models.IntegerField(default=0)
 
     class Status(models.TextChoices):
         ACTIVE = "AE", "Active"
