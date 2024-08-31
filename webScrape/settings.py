@@ -42,6 +42,17 @@ INSTALLED_APPS = [
     "botengine.apps.BotengineConfig"
 ]
 
+# Django Queue Configuration
+Q_CLUSTER = {
+    'name': 'DjangoQ',
+    'workers': 4,
+    'timeout': 90,
+    'retry': 500,
+    'queue_limit': 50,
+    'bulk': 10,
+    'orm': 'default',
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
