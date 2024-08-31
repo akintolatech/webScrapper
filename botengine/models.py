@@ -31,3 +31,12 @@ class Log(models.Model):
 
     def __str__(self):
         return self.log_details
+
+
+class Account(models.Model):
+
+    email = models.CharField(max_length=500)
+    password = models.CharField(max_length=33)
+
+    def __str__(self):
+        return self.email

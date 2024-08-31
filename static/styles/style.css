@@ -100,7 +100,11 @@ img {
     padding: 12px;
     margin-block: 12px;
     border-radius: var(--rad);
-    background-color: none;
+
+}
+
+.dashboard-tab:hover {
+    background-color: #fff7ff08;
 }
 
 .icn-box {

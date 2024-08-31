@@ -33,11 +33,13 @@
 
                         <form id="status-form" method="post">
                             {% csrf_token %}
+                            <input type="hidden" name="form_type" value="status_form">
                             <!-- Rounded switch -->
                             <label class="switch">
-                                <input id="status-switch" name="switch" type="checkbox" {% if bot.status == 'AE' %} checked {% endif %}>
+                                <input id="status-switch" name="switch" type="checkbox" {% if bot.status == 'AE' %} checked {% endif %} />
                                 <span class="slider round"></span>
                             </label>
+                            
                         </form>
 
                     </div>
@@ -54,7 +56,7 @@
                     <h3>Dashboard</h3>
                 </div>
 
-                <div class="dashboard-tab" onclick="tabToggle('accounts', this)" id="defaultOpen">
+                <div class="dashboard-tab" onclick="tabToggle('accounts', this)" >
                     <div class="icn-box">
                         <img src="{% static 'img/account.svg' %}"  />
                     </div>
@@ -123,7 +125,7 @@
                             </a>
                         </div>
                         
-                        {% for log in logs %}
+                        {% for log in recent_logs %}
                             <p>
                                 <strong>{{ forloop.counter }}.</strong> {{ log.log_details }} on {{ log.created }}
                             </p>
@@ -140,23 +142,16 @@
                             <h3>Accounts</h3>
                         </div>
 
-                        <form method="post">
-
+                        <form >
                             {% csrf_token %}
-                            <!-- <center>
-                                <div class="image-box">
-                                    <img src="{% static 'img/bot.png' %}" />
+                            <input type="hidden" name="form_type" value="accounts_form">
+                            {% for account in accounts %}
+                                <div>
+                                    <input name="email_{{ account.id }}" value="{{ account.email }}" type="text" placeholder="Email" required />
+                                    <input name="password_{{ account.id }}" value="{{ account.password }}" type="password" placeholder="Passkey" required />
                                 </div>
-                                <p>Welcome enter your Trust below</p>
-                                {% if error %}
-                                    <p style="color:red;">{{ error }}</p>
-                                {% endif %}
-                            </center> -->
-                            
-                            <input name="username" type="text" placeholder="username" required />
-                            <input name="password" type="password" placeholder="passkey" required />
-                            <button style="width: 120px;">Update</button>
-
+                            {% endfor %}
+                            <button disabled name="update" style="width: 120px; cursor:not-allowed">Update</button>
                         </form>
 
                     </div>

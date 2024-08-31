@@ -42,8 +42,3 @@ def change_status(request, bot_id):
         return JsonResponse({"message": "Bot not found."}, status=404)
 
 
-# def bot_cycle(request):
-#
-#     run_bot_automation(repeat=5 * 60)  # Schedule the task every 5 minutes
-#
-#     return redirect("authenticator:dashboard")
