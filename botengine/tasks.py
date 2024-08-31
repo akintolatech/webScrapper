@@ -47,6 +47,7 @@ def run_bot_automation():
         captcha_image_url = captcha_image_element.get_attribute("src")
         captcha_image_response = requests.get(captcha_image_url)
         captcha_image_path = os.path.join(os.getcwd(), "res/captcha_image.jpg")
+
         with open(captcha_image_path, 'wb') as file:
             file.write(captcha_image_response.content)
 
@@ -58,10 +59,10 @@ def run_bot_automation():
         login_button.click()
 
         page_text = driver.find_element(By.TAG_NAME, "body").text
-        log_entry = Log(log_details=page_text)
+        log_entry = Log(log_details="Login Successfully made to Target website")
         log_entry.save()
 
-        print("Login successful")
+        print(page_text)
 
     except TimeoutException:
         print("Timeout while trying to login")
