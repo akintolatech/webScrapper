@@ -14,7 +14,8 @@ import numpy as np
 import cv2
 from .models import Log
 
-@background(schedule=5*60)  # Run every 5 minutes
+
+@background(schedule=5 * 60)  # Run every 5 minutes
 def run_bot_automation():
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--start-maximized")
