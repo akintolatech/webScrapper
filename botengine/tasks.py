@@ -17,7 +17,6 @@ from .models import Log, Bot
 
 bot = Bot.objects.get(id=1)
 
-
 @background(schedule=30)  # Run every 30 seconds
 def run_bot_automation():
     captcha_dir = os.path.join(os.getcwd(), "res")
@@ -89,7 +88,6 @@ def run_bot_automation():
                     log_entry = Log(log_details="CAPTCHA failed")
                     log_entry.save()
                     continue  # Retry CAPTCHA resolution on the webpage
-                    # return False #restart the web driver and try again
                 except TimeoutException:
                     # CAPTCHA alert not found, proceed with further checks
                     pass
@@ -103,6 +101,7 @@ def run_bot_automation():
                 profile_view_element = driver.find_element(By.XPATH, "//h3[contains(text(), 'Profile View')]")
                 if profile_view_element:
                     bot.successful_logins += 1
+                    bot.save()
                     log_entry = Log(log_details="Login Successful")
                     log_entry.save()
                     print("Login successful")
@@ -115,16 +114,59 @@ def run_bot_automation():
                 log_entry = Log(log_details="Timeout while trying to login ... Retrying Log in")
                 log_entry.save()
 
-            # except (FileNotFoundError, ValueError) as e:
-            #     print(e)
-            #     log_entry = Log(log_details=str(e))
-            #     log_entry.save()
+
 
     # Initialize the WebDriver
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
     for _ in range(max_retries):
         if login(driver):
+            try:
+                # Navigate directly to the appointment page
+                appointment_page_url = "https://blsitalypakistan.com/bls_appmnt/bls-italy-appointment/MWRVRnJlMTgwNjczMDc5NjI/NjlPc1J2bzI0OTcyOTM4MzU2/MXNBUGFXMzA5NDE3MzYyMDU"
+                driver.get(appointment_page_url)
+                print("Navigated directly to the appointment page.")
+
+                # Solve CAPTCHA on the appointment page
+                # Wait for the page to load after selecting the individual option
+                WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located((By.ID, "Imageid"))  # Wait for the captcha image to appear
+                )
+
+                try:
+                    # Locate the CAPTCHA image element
+                    captcha_image_element = driver.find_element(By.ID, "Imageid")
+                    captcha_image_url = captcha_image_element.get_attribute("src")
+                    captcha_image_response = requests.get(captcha_image_url)
+
+                    # Save the captcha image
+                    with open(captcha_image_path, 'wb') as file:
+                        file.write(captcha_image_response.content)
+
+                    # Wait for the image to be saved and available
+                    max_attempts = 10
+                    attempt = 0
+                    while not os.path.isfile(captcha_image_path) and attempt < max_attempts:
+                        time.sleep(1)  # Wait for 1 second before checking again
+                        attempt += 1
+
+                    if not os.path.isfile(captcha_image_path):
+                        raise FileNotFoundError(f"Captcha image not found after {max_attempts} attempts")
+
+                    # Process the captcha image
+                    extracted_captcha_text = basic_captcha_solver(captcha_image_path)
+
+                    if extracted_captcha_text:
+                        captcha_input = driver.find_element(By.ID, "captcha_code_reg")
+                        captcha_input.send_keys(extracted_captcha_text)
+                        print("Solved captcha after booking steps.")
+                    else:
+                        print("Failed to solve captcha after booking steps.")
+                except Exception as e:
+                    print(f"Error during post-booking captcha solving: {e}")
+            except Exception as e:
+                print(f"Error navigating to the appointment page: {e}")
+
             break  # Exit loop if login is successful
         else:
             # Wait before retrying
