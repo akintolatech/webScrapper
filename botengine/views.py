@@ -19,6 +19,7 @@ def change_status(request, bot_id):
 
         if new_status in dict(Bot.Status.choices):
             bot.status = new_status
+            run_bot_automation(repeat=5 * 60)
             new_log = Log(log_details=f"Bot was turned ")
             new_log.save()
             bot.save()
