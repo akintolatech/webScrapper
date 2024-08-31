@@ -39,19 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "authenticator.apps.AuthenticatorConfig",
-    "botengine.apps.BotengineConfig"
+    "botengine.apps.BotengineConfig",
+    'background_task',
 ]
 
-# Django Queue Configuration
-Q_CLUSTER = {
-    'name': 'DjangoQ',
-    'workers': 4,
-    'timeout': 90,
-    'retry': 500,
-    'queue_limit': 50,
-    'bulk': 10,
-    'orm': 'default',
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
