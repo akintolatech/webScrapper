@@ -42,3 +42,7 @@ def change_status(request, bot_id):
         return JsonResponse({"message": "Bot not found."}, status=404)
 
 
+def get_logs(request):
+    logs = Log.objects.all().order_by('-created')[:10]  # Adjust the queryset as needed
+    log_data = [{"counter": idx + 1, "details": log.log_details, "created": log.created.strftime('%Y-%m-%d %H:%M:%S')} for idx, log in enumerate(logs)]
+    return JsonResponse(log_data, safe=False)

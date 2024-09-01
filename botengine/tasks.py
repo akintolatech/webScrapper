@@ -17,7 +17,8 @@ from .models import Log, Bot
 
 bot = Bot.objects.get(id=1)
 
-@background(schedule=30)  # Run every 30 seconds
+
+@background(schedule=60)
 def run_bot_automation():
     captcha_dir = os.path.join(os.getcwd(), "res")
     captcha_image_path = os.path.join(captcha_dir, "captcha_image.jpg")
@@ -32,7 +33,7 @@ def run_bot_automation():
     def basic_captcha_solver(img_path):
         # Read Image from supplied path
         img = cv2.imread(img_path)
-        # Covert image to grayscale for Open cv processing
+        # Convert image to grayscale for OpenCV processing
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         _, thresh = cv2.threshold(gray, 50, 255, cv2.THRESH_BINARY_INV)
         white_img = cv2.merge([255 - thresh, 255 - thresh, 255 - thresh])
@@ -105,6 +106,34 @@ def run_bot_automation():
                     log_entry = Log(log_details="Login Successful")
                     log_entry.save()
                     print("Login successful")
+
+                    # Navigate to the booking page
+                    driver.get(
+                        "https://blsitalypakistan.com/bls_appmnt/bls-italy-appointment/MWRVRnJlMTgwNjczMDc5NjI/NjlPc1J2bzI0OTcyOTM4MzU2/MXNBUGFXMzA5NDE3MzYyMDU")
+
+                    # Wait until the booking page is loaded
+                    WebDriverWait(driver, 10).until(
+                        EC.presence_of_element_located((By.XPATH, "//h1[contains(text(), 'Appointment Schedule')]"))
+                    )
+
+                    booking_appointment_check = driver.find_element(By.XPATH,
+                                                                    "//h1[contains(text(), 'Appointment Schedule')]")
+                    # Check if booking link was successful
+                    if booking_appointment_check:
+
+                        print("Booking appointment successfully navigated to")
+                        # Check presence of appointment center dropdown
+                        center_dropdown = WebDriverWait(driver, 10).until(
+                            EC.presence_of_element_located((By.ID, "valCenterLocationId"))
+                        )
+                        print("Appointment center dropdown is present")
+
+                        # Example: Select an appointment center from dropdown
+                        center_dropdown.send_keys("Islamabad (Pakistan)")
+
+                    else:
+                        print("Booking appointment not found!")
+
                     return True
                 else:
                     raise ValueError("Login failed, profile view not found")
@@ -114,60 +143,12 @@ def run_bot_automation():
                 log_entry = Log(log_details="Timeout while trying to login ... Retrying Log in")
                 log_entry.save()
 
-
-
     # Initialize the WebDriver
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
     for _ in range(max_retries):
         if login(driver):
-            try:
-                # Navigate directly to the appointment page
-                appointment_page_url = "https://blsitalypakistan.com/bls_appmnt/bls-italy-appointment/MWRVRnJlMTgwNjczMDc5NjI/NjlPc1J2bzI0OTcyOTM4MzU2/MXNBUGFXMzA5NDE3MzYyMDU"
-                driver.get(appointment_page_url)
-                print("Navigated directly to the appointment page.")
-
-                # Solve CAPTCHA on the appointment page
-                # Wait for the page to load after selecting the individual option
-                WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.ID, "Imageid"))  # Wait for the captcha image to appear
-                )
-
-                try:
-                    # Locate the CAPTCHA image element
-                    captcha_image_element = driver.find_element(By.ID, "Imageid")
-                    captcha_image_url = captcha_image_element.get_attribute("src")
-                    captcha_image_response = requests.get(captcha_image_url)
-
-                    # Save the captcha image
-                    with open(captcha_image_path, 'wb') as file:
-                        file.write(captcha_image_response.content)
-
-                    # Wait for the image to be saved and available
-                    max_attempts = 10
-                    attempt = 0
-                    while not os.path.isfile(captcha_image_path) and attempt < max_attempts:
-                        time.sleep(1)  # Wait for 1 second before checking again
-                        attempt += 1
-
-                    if not os.path.isfile(captcha_image_path):
-                        raise FileNotFoundError(f"Captcha image not found after {max_attempts} attempts")
-
-                    # Process the captcha image
-                    extracted_captcha_text = basic_captcha_solver(captcha_image_path)
-
-                    if extracted_captcha_text:
-                        captcha_input = driver.find_element(By.ID, "captcha_code_reg")
-                        captcha_input.send_keys(extracted_captcha_text)
-                        print("Solved captcha after booking steps.")
-                    else:
-                        print("Failed to solve captcha after booking steps.")
-                except Exception as e:
-                    print(f"Error during post-booking captcha solving: {e}")
-            except Exception as e:
-                print(f"Error navigating to the appointment page: {e}")
-
-            break  # Exit loop if login is successful
+            break
         else:
             # Wait before retrying
             time.sleep(5)

@@ -51,7 +51,7 @@
 
                 <div class="dashboard-tab" onclick="tabToggle('home', this)" id="defaultOpen">
                     <div class="icn-box">
-                        <img src="{% static 'img/account.svg' %}"  />
+                        <img src="{% static 'img/home.svg' %}"  />
                     </div>
                     <h3>Dashboard</h3>
                 </div>
@@ -65,14 +65,14 @@
 
                 <div class="dashboard-tab" onclick="tabToggle('about', this)">
                     <div class="icn-box">
-                        <img src="{% static 'img/result.svg' %}" />
+                        <img src="{% static 'img/database.svg' %}" />
                     </div>
                     <h3>Data Logs</h3>
                 </div>
 
                 <div class="dashboard-tab" onclick="tabToggle('projects', this)">
                     <div class="icn-box">
-                        <img src="{% static 'img/error.svg' %}" />
+                        <img src="{% static 'img/warn.svg' %}" />
                     </div>
                     <h3>Errata</h3>
                 </div>
@@ -114,7 +114,7 @@
                             <h2>{{ bot.successful_bookings }}</h2>
                         </div>
                     </div>
-                    <div class="logs-container">
+                    <div class="logs-container" >
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <h3>Recent Logs ({{ log_count }} entries)</h3>
 
@@ -124,13 +124,18 @@
                                 </div>
                             </a>
                         </div>
-                        
+
+                        <div id="logsContainer">
+
+                        </div>
+
                         {% for log in recent_logs %}
                             <p>
                                 <strong>{{ forloop.counter }}.</strong> {{ log.log_details }} on {{ log.created }}
                             </p>
                         {% endfor %}
                     </div>
+
                 </div>
 
                 <!-- Accounts section -->
@@ -200,6 +205,31 @@
 </body>
 
     <script>
+        function fetchLogs() {
+            fetch("{% url 'botengine:get_logs' %}")
+                .then(response => response.json())
+                .then(data => {
+                    const logsContainer = document.getElementById('logsContainer');
+                    logsContainer.innerHTML = '';  // Clear the container
+
+                    // Add logs to the container
+                    data.forEach(log => {
+                        const logElement = document.createElement('p');
+                        logElement.innerHTML = `<strong>${log.counter}.</strong> ${log.details} on ${log.created}`;
+                        logsContainer.appendChild(logElement);
+                    });
+                });
+        }
+
+        // Refresh logs every 10 seconds
+        setInterval(fetchLogs, 10000);
+    </script>
+
+
+
+
+
+    <script>
 
 
 
@@ -233,14 +263,10 @@
 
         };
 
-        
-        
-
     </script>
 
-
-
     <script language="javascript" src="{% static 'js/toggle.js' %}"></script>
+
     <script>
         document.getElementById('status-switch').addEventListener('change', function() {
             const isChecked = this.checked;
