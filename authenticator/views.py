@@ -33,10 +33,9 @@ def dashboard(request):
         recent_logs = logs[: 5]
         accounts = Account.objects.all()
 
-
         context = {
             "bot": bot,
-            "recent_logs" :recent_logs,
+            "recent_logs": recent_logs,
             "logs": logs,
             "log_count": logs.count(),
             "accounts": accounts
@@ -45,14 +44,6 @@ def dashboard(request):
         return render(request, 'authenticator/pages/dashboard.html', context)
     else:
         return redirect('login')
-
-
-@login_required(login_url='/authenticate/')
-def clear_logs(request):
-    logs = Log.objects.all()
-    logs.delete()
-
-    return redirect('authenticator:dashboard')
 
 
 # @login_required(login_url='/authenticate/')
