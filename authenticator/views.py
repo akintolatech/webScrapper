@@ -29,15 +29,14 @@ def dashboard(request):
     if request.user.is_authenticated:
 
         bot = Bot.objects.get(id=1)
-        logs = Log.objects.all()
-        recent_logs = logs[: 5]
+
         accounts = Account.objects.all()
 
         context = {
             "bot": bot,
-            "recent_logs": recent_logs,
-            "logs": logs,
-            "log_count": logs.count(),
+            # "recent_logs": recent_logs,
+            # "logs": logs,
+            # "log_count": logs.count(),
             "accounts": accounts
         }
 
