@@ -51,6 +51,7 @@ def clear_logs(request):
     return redirect('authenticator:dashboard')
 
 
+# Get logs every 5 seconds woth Js fetch request
 def get_logs(request):
     logs = Log.objects.all()
     recent_logs = logs[:5]
