@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="73a675f3-d734-4d67-9d35-94fd5c6159f4" name="Changes" comment="Bot Engine UI implementation" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2lLfcMx8klVUsJF9j72HncNl0Hc" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Victor Workstation/Projects/WebScraper/webScrapper",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Victor Workstation\Projects\WebScraper\webScrapper" />
+      <recent name="D:\Victor Workstation\Projects\WebScraper\webScrapper\static\img" />
+      <recent name="D:\Victor Workstation\Projects\WebScraper\webScrapper\authenticator" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="73a675f3-d734-4d67-9d35-94fd5c6159f4" name="Changes" comment="" />
+      <created>1724964355868</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1724964355868</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial Local Migration">
+      <option name="closed" value="true" />
+      <created>1725054998741</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1725054998741</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Log schema">
+      <option name="closed" value="true" />
+      <created>1725055294493</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1725055294493</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Log schema">
+      <option name="closed" value="true" />
+      <created>1725055822125</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1725055822125</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Bot Switch">
+      <option name="closed" value="true" />
+      <created>1725056700766</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1725056700766</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Bot Switch">
+      <option name="closed" value="true" />
+      <created>1725056761064</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725056761064</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Bot Switch">
+      <option name="closed" value="true" />
+      <created>1725057665730</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725057665730</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Bot Switch">
+      <option name="closed" value="true" />
+      <created>1725057672019</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1725057672019</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Bot Switch">
+      <option name="closed" value="true" />
+      <created>1725058678767</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1725058678767</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Bot Switch">
+      <option name="closed" value="true" />
+      <created>1725066616620</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1725066616620</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Bot Engine Implementation">
+      <option name="closed" value="true" />
+      <created>1725066959336</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1725066959336</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Bot Engine Implementation">
+      <option name="closed" value="true" />
+      <created>1725067021316</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1725067021316</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Bot Engine Implementation">
+      <option name="closed" value="true" />
+      <created>1725067351506</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1725067351506</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Bot Engine Implementation">
+      <option name="closed" value="true" />
+      <created>1725075631715</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1725075631715</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Bot Engine Implementation">
+      <option name="closed" value="true" />
+      <created>1725077264080</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1725077264080</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Bot Engine Implementation">
+      <option name="closed" value="true" />
+      <created>1725088434716</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1725088434716</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Bot Engine Implementation">
+      <option name="closed" value="true" />
+      <created>1725115108963</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1725115108964</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Bot Engine UI implementation">
+      <option name="closed" value="true" />
+      <created>1725126223251</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1725126223251</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Bot Engine UI implementation">
+      <option name="closed" value="true" />
+      <created>1725142729433</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1725142729433</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Bot Engine UI implementation">
+      <option name="closed" value="true" />
+      <created>1725145157977</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1725145157977</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Bot Engine UI implementation">
+      <option name="closed" value="true" />
+      <created>1725207134547</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1725207134547</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Bot Engine UI implementation">
+      <option name="closed" value="true" />
+      <created>1725208930231</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1725208930231</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Bot Engine UI implementation">
+      <option name="closed" value="true" />
+      <created>1725229218844</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1725229218844</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Bot Engine UI implementation">
+      <option name="closed" value="true" />
+      <created>1725234061390</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1725234061390</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Bot Engine UI implementation">
+      <option name="closed" value="true" />
+      <created>1725236345364</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1725236345364</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Bot Engine UI implementation">
+      <option name="closed" value="true" />
+      <created>1725236510558</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1725236510558</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Local Migration" />
+    <MESSAGE value="Log schema" />
+    <MESSAGE value="Bot Switch" />
+    <MESSAGE value="Bot Engine Implementation" />
+    <MESSAGE value="Bot Engine UI implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bot Engine UI implementation" />
+  </component>
+</project>
