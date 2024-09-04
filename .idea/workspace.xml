@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73a675f3-d734-4d67-9d35-94fd5c6159f4" name="Changes" comment="Recaptcha solving">
-      <change beforePath="$PROJECT_DIR$/botengine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/botengine/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="73a675f3-d734-4d67-9d35-94fd5c6159f4" name="Changes" comment="Recaptcha solving" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -300,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725413797293</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Recaptcha solving">
+      <option name="closed" value="true" />
+      <created>1725414274100</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1725414274100</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
