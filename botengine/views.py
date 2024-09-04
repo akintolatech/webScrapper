@@ -101,7 +101,8 @@ def solve_recaptcha(request):
         recaptcha.token = request.POST.get('g-recaptcha-response')
         recaptcha.save()
         return redirect('/thanks/')
-    return render(request, 'solve_recaptcha.html', {'recaptcha': recaptcha})
+    return render(request, 'botengine/solve_recaptcha.html', {'recaptcha': recaptcha})
+
 
 def thanks(request):
     return render(request, 'thanks.html')
