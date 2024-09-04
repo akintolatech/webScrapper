@@ -2,6 +2,13 @@ from django.db import models
 
 
 # Create your models here.
+
+class Recaptcha(models.Model):
+    site_key = models.CharField(max_length=255)
+    token = models.CharField(max_length=1024, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
 class Bot(models.Model):
     bot_name = models.CharField(max_length=255, unique=True)
     successful_logins = models.IntegerField(default=0)

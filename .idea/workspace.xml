@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73a675f3-d734-4d67-9d35-94fd5c6159f4" name="Changes" comment="Mvp wrap">
-      <change afterPath="$PROJECT_DIR$/botengine/book_bot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/botengine/bot_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webScrapper.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webScrapper.iml" afterDir="false" />
+    <list default="true" id="73a675f3-d734-4d67-9d35-94fd5c6159f4" name="Changes" comment="Bot algorithm development">
+      <change afterPath="$PROJECT_DIR$/botengine/templates/botengine/recaptcha.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/botengine/templates/botengine/thanks.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botengine/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/botengine/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botengine/book_bot.py" beforeDir="false" afterPath="$PROJECT_DIR$/botengine/book_bot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botengine/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/botengine/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botengine/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/botengine/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botengine/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/botengine/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -39,6 +44,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "Python.book_bot.executor": "Run",
     "Python.bot_algorithm.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -286,7 +292,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725287168809</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Bot algorithm development">
+      <option name="closed" value="true" />
+      <created>1725402337811</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1725402337811</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -296,6 +310,7 @@
     <MESSAGE value="Bot Engine Implementation" />
     <MESSAGE value="Bot Engine UI implementation" />
     <MESSAGE value="Mvp wrap" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mvp wrap" />
+    <MESSAGE value="Bot algorithm development" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bot algorithm development" />
   </component>
 </project>

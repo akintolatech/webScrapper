@@ -173,43 +173,51 @@ def fill_booking_form(driver):
 
 
 def login(driver):
-    captcha_dir = os.path.join(os.getcwd(), "res")
-    captcha_image_path = os.path.join(captcha_dir, "captcha_image.jpg")
     while True:  # Loop to handle CAPTCHA retries
         try:
+            # Navigate to the login page
             driver.get("https://blsitalypakistan.com/account/login")
-            email_input = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.XPATH, "//input[@type='text' and @placeholder='Enter Email']"))
-            )
+
+            email_input = driver.find_element(By.XPATH, "//input[@type='text' and @placeholder='Enter Email']")
             email_input.send_keys("Waqasali885875867@gmail.com")
+
             password_input = driver.find_element(By.NAME, "login_password")
             password_input.send_keys("Azhar2233")
 
-            extracted_captcha_text = solve_captcha(driver, captcha_image_path)
-            captcha_input = driver.find_element(By.NAME, "captcha_code")
-            captcha_input.clear()  # Clear previous CAPTCHA input
-            captcha_input.send_keys(extracted_captcha_text)
+            # Handle reCAPTCHA
+            recaptcha_element = driver.find_element(By.CLASS_NAME, "g-recaptcha")
+            site_key = recaptcha_element.get_attribute("data-sitekey")
 
+            # Send reCAPTCHA site key to Django app
+            response = requests.post("http://your-django-app-url.com/api/send_recaptcha/", data={"site_key": site_key})
+
+            # Poll for the reCAPTCHA solution
+            while True:
+                response = requests.get("http://your-django-app-url.com/api/get_recaptcha_solution/")
+                recaptcha_token = response.json().get('recaptcha_token')
+                if recaptcha_token:
+                    print(f"Received reCAPTCHA token: {recaptcha_token}")
+                    break
+                print("Waiting for reCAPTCHA solution...")
+                time.sleep(5)  # Wait before retrying
+
+            # Use the reCAPTCHA token
+            driver.execute_script(f"document.getElementById('g-recaptcha-response').value='{recaptcha_token}';")
+
+            # Attempt to login after solving reCAPTCHA
             login_button = driver.find_element(By.XPATH, "//button[@name='submitLogin']")
             login_button.click()
 
-            # alert = WebDriverWait(driver, 5).until(
-            #     EC.presence_of_element_located((By.CLASS_NAME, "alert-danger"))
-            # )
-            #
-            # if alert :
-            #     print("Captcha Failed .. Retrying ")
+            time.sleep(5)  # Give some time for the login process to complete
+            if "Profile View" in driver.page_source:
+                print("Login Success")
+                return True
+            else:
+                print("Login failed. Retrying...")
 
-            # Check if login was successful by inspecting the page content
-            WebDriverWait(driver, 20).until(
-                EC.presence_of_element_located((By.XPATH, "//h3[contains(text(), 'Profile View')]"))
-            )
+        except Exception as e:
+            print(f"An error occurred: {e}. Retrying...")
 
-            print("Login Success")
-            return True
-
-        except TimeoutException:
-            print("Timeout while trying to login")
 
 
 # Initialize the WebDriver

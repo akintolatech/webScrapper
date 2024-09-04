@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Solve reCAPTCHA</title>
+</head>
+<body>
+    <h1>Solve reCAPTCHA</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="g-recaptcha" data-sitekey="{{ recaptcha.site_key }}"></div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+</html>
