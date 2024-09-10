@@ -87,6 +87,7 @@ def get_logs(request):
 # API test
 @csrf_exempt
 def send_recaptcha(request):
+    # using jason
     if request.method == 'POST':
         site_key = request.POST.get('site_key')
         recaptcha = Recaptcha(site_key=site_key)
