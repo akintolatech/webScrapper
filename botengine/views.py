@@ -84,6 +84,7 @@ def get_logs(request):
 
 # views.py
 
+# API test
 @csrf_exempt
 def send_recaptcha(request):
     if request.method == 'POST':
