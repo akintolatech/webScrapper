@@ -175,7 +175,6 @@ def fill_booking_form(driver):
 def login(driver):
     while True:  # Loop to handle CAPTCHA retries
         try:
-            # Navigate to the login page
             driver.get("https://blsitalypakistan.com/account/login")
 
             email_input = driver.find_element(By.XPATH, "//input[@type='text' and @placeholder='Enter Email']")
@@ -189,11 +188,11 @@ def login(driver):
             site_key = recaptcha_element.get_attribute("data-sitekey")
 
             # Send reCAPTCHA site key to Django app
-            response = requests.post("http://127.0.0.1:8000/api/send_recaptcha/", data={"site_key": site_key})
+            response = requests.post("https://akintolatech.pythonanywhere.com/api/send_recaptcha/", data={"site_key": site_key})
 
             # Poll for the reCAPTCHA solution
             while True:
-                response = requests.get("http://127.0.0.1:8000/api/get_recaptcha_solution/")
+                response = requests.get("https://akintolatech.pythonanywhere.com/api/get_recaptcha_solution/")
                 recaptcha_token = response.json().get('recaptcha_token')
                 if recaptcha_token:
                     print(f"Received reCAPTCHA token: {recaptcha_token}")
@@ -217,7 +216,6 @@ def login(driver):
 
         except Exception as e:
             print(f"An error occurred: {e}. Retrying...")
-
 
 # Initialize the WebDriver
 def run_bot_automation():

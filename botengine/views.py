@@ -60,7 +60,10 @@ def get_logs(request):
 
     # Data for recent logs
     recent_log_data = [
-        {"counter": idx + 1, "details": log.log_details, "created": log.created.strftime('%Y-%m-%d %H:%M:%S')}
+        {
+            "counter": idx + 1, "details": log.log_details,
+            "created": log.created.strftime('%Y-%m-%d %H:%M:%S')
+        }
         for idx, log in enumerate(recent_logs)
     ]
 
@@ -70,7 +73,13 @@ def get_logs(request):
         for idx, log in enumerate(logs)
     ]
 
-    return JsonResponse({"recent_logs": recent_log_data, "all_logs": all_log_data}, safe=False)
+    return JsonResponse(
+        {
+            "recent_logs": recent_log_data,
+            "all_logs": all_log_data
+        },
+        safe=False
+    )
 
 
 # views.py
